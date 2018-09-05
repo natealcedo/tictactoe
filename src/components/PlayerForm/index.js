@@ -33,7 +33,9 @@ export const PlayerForm = ({
         <div
           className="start-game-button"
           onClick={() => {
-            if (playerOneName === "" || playerTwoName === "") {
+            if (playerOneName.trim() === "" || playerTwoName.trim() === "") {
+              // just a quick hack
+              alert("Player names are not filled");
               return;
             }
             onGameStart();
