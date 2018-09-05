@@ -1,18 +1,28 @@
-function checkRow(state, player) {
-  return state.some(row => row.every(element => element === player));
+function checkRow(state, playerValueOnBoard) {
+  return state.some(row =>
+    row.every(element => element === playerValueOnBoard)
+  );
 }
 
-function checkColumn(state, player) {
+function checkColumn(state, playerValueOnBoard) {
   const newState = _rotateState(state);
-  return checkRow(newState, player);
+  return checkRow(newState, playerValueOnBoard);
 }
 
-function checkDiagonal([row1, row2, row3], player) {
-  if (row1[0] === player && row2[1] === player && row3[2] === player) {
+function checkDiagonal([row1, row2, row3], playerValueOnBoard) {
+  if (
+    row1[0] === playerValueOnBoard &&
+    row2[1] === playerValueOnBoard &&
+    row3[2] === playerValueOnBoard
+  ) {
     return true;
   }
 
-  if (row1[2] === player && row2[1] === player && row3[0] === player) {
+  if (
+    row1[2] === playerValueOnBoard &&
+    row2[1] === playerValueOnBoard &&
+    row3[0] === playerValueOnBoard
+  ) {
     return true;
   }
 
@@ -23,16 +33,16 @@ function _rotateState(state) {
   return state[0].map((_, i) => state.map(row => row[i]));
 }
 
-export function checkWinCondition(state, player) {
-  if (checkRow(state, player)) {
+export function checkWinCondition(state, playerValueOnBoard) {
+  if (checkRow(state, playerValueOnBoard)) {
     return true;
   }
 
-  if (checkColumn(state, player)) {
+  if (checkColumn(state, playerValueOnBoard)) {
     return true;
   }
 
-  if (checkDiagonal(state, player)) {
+  if (checkDiagonal(state, playerValueOnBoard)) {
     return true;
   }
 
