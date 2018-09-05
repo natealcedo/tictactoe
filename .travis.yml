@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+  - ~/.cache
+script:
+  - npm test
+  - npm run build
+  # - npm start & 
+  # - npm run cypress:run -- --record --key $CYPRESS_KEY
+
+after_script:
+  - npm run coveralls
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: master
