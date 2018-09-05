@@ -40,9 +40,14 @@ export default function(state = initialState, action) {
     }
 
     case actionTypes.TAKE_TURN: {
+      const { row, column } = action.payload;
+      const currentGameState = state.gameState;
+      if (currentGameState[row][column] !== null) {
+        return state;
+      }
+
       const currentPlayer = state.currentPlayer;
       const playerState = state[currentPlayer];
-      const { row, column } = action.payload;
       const newPlayer = currentPlayer === "player1" ? "player2" : "player1";
       return {
         ...state,
