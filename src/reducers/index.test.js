@@ -24,7 +24,7 @@ describe("reducers", () => {
     ).toEqual(expectedState);
   });
 
-  test("should start game", () => {
+  test("should start game with player one", () => {
     const gameInitialState = {
       ...initialState,
       player1: {
@@ -45,6 +45,31 @@ describe("reducers", () => {
     };
 
     expect(reducers(gameInitialState, actions.startGame())).toEqual(
+      expectedState
+    );
+  });
+
+  test("should new game with starting player the opposite of current player", () => {
+    const gameInitialState = {
+      ...initialState,
+      player1: {
+        name: "Nate",
+        numberOfMoves: 5,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 4,
+        valueOnBoard: 1
+      },
+      currentPlayer: "player1"
+    };
+    const expectedState = {
+      ...gameInitialState,
+      currentPlayer: "player2"
+    };
+
+    expect(reducers(gameInitialState, actions.startNewGame())).toEqual(
       expectedState
     );
   });

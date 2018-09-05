@@ -29,6 +29,15 @@ export default function(state = initialState, action) {
       };
     }
 
+    case actionTypes.START_NEW_GAME: {
+      const newPlayer =
+        state.currentPlayer === "player1" ? "player2" : "player1";
+      return {
+        ...state,
+        currentPlayer: newPlayer
+      };
+    }
+
     case actionTypes.ON_NAME_CHANGE: {
       return {
         ...state,

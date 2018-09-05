@@ -17,6 +17,13 @@ export function startGame() {
   };
 }
 
+export function startNewGame() {
+  return {
+    type: actionTypes.START_NEW_GAME,
+    payload: null
+  };
+}
+
 export function takeTurn(row, column) {
   return {
     type: actionTypes.TAKE_TURN,
@@ -30,5 +37,6 @@ export function takeTurn(row, column) {
 export default {
   onNameChange,
   startGame,
+  startNewGame,
   takeTurn
 };
