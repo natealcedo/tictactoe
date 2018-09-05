@@ -18,9 +18,11 @@ export const GameBoard = ({
   return (
     <div className="game-board-container">
       <div className="state-tracker">
-        {winner ? null : `WHO'S TURN IS IT: ${currentPlayer.name}`}
-        <br />
-        {winner ? `${currentPlayer.name} won!` : null}
+        <h2>
+          {winner
+            ? `${currentPlayer.name.toUpperCase()} won!`
+            : `${currentPlayer.name.toUpperCase()}'s turn`}
+        </h2>
       </div>
       <div className="game-board">
         {gameState.map((row, rowNumber) => {

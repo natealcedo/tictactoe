@@ -7,8 +7,9 @@ exports[`GameBoard should render without exploding 1`] = `
   <div
     className="state-tracker"
   >
-    WHO'S TURN IS IT: Nate
-    <br />
+    <h2>
+      NATE's turn
+    </h2>
   </div>
   <div
     className="game-board"
