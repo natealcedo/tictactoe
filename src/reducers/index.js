@@ -1,7 +1,7 @@
 import actionTypes from "../actions/actionTypes";
 import utils from "../utils";
 
-export const initialState = {
+const initialState = {
   player1: {
     name: "",
     numberOfMoves: 0,
@@ -19,8 +19,30 @@ export const initialState = {
   isDraw: false
 };
 
-export default function (state = initialState, action) {
+export const createInitialState = () => ({
+  player1: {
+    name: "",
+    numberOfMoves: 0,
+    valueOnBoard: 0
+  },
+  player2: {
+    name: "",
+    numberOfMoves: 0,
+    valueOnBoard: 1
+  },
+  gameState: [[null, null, null], [null, null, null], [null, null, null]],
+  isGameStarted: false,
+  currentPlayer: null,
+  winner: null,
+  isDraw: false
+});
+
+export default function(state = initialState, action) {
   switch (action.type) {
+    case actionTypes.RESET_GAME: {
+      return createInitialState();
+    }
+
     case actionTypes.START_GAME: {
       return {
         ...state,

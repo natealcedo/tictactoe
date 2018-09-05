@@ -1,18 +1,20 @@
-import reducers, { initialState } from ".";
+import reducers, { createInitialState } from ".";
 import actions from "../actions";
 
 describe("reducers", () => {
-  test("should return initialState state for unknown action type", () => {
+  test("should return initial state state for unknown action type", () => {
     const action = {
       type: "FOO_BAR",
       payload: null
     };
-    expect(reducers(initialState, action)).toEqual(initialState);
+    expect(reducers(createInitialState(), action)).toEqual(
+      createInitialState()
+    );
   });
 
   test("should update player1", () => {
     const expectedState = {
-      ...initialState,
+      ...createInitialState(),
       player1: {
         name: "Nate",
         numberOfMoves: 0,
@@ -21,13 +23,13 @@ describe("reducers", () => {
     };
 
     expect(
-      reducers(initialState, actions.onNameChange("player1", "Nate"))
+      reducers(createInitialState(), actions.onNameChange("player1", "Nate"))
     ).toEqual(expectedState);
   });
 
   test("should start game with player one", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       player1: {
         name: "Nate",
         numberOfMoves: 0,
@@ -52,7 +54,7 @@ describe("reducers", () => {
 
   test("should start new game when one player won", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       isGameStarted: true,
       gameState: [[0, 0, 0], [1, 1, null], [null, null, null]],
       winner: "player1",
@@ -69,8 +71,7 @@ describe("reducers", () => {
       currentPlayer: "player1"
     };
     const expectedState = {
-      ...initialState,
-      gameState: [[null, null, null], [null, null, null], [null, null, null]],
+      ...createInitialState(),
       isGameStarted: true,
       player1: {
         name: "Nate",
@@ -93,9 +94,8 @@ describe("reducers", () => {
 
   test("should start new game when drawn", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
-      isDraw: true,
       player1: {
         name: "Nate",
         numberOfMoves: 5,
@@ -106,12 +106,12 @@ describe("reducers", () => {
         numberOfMoves: 4,
         valueOnBoard: 1
       },
-      currentPlayer: "player1"
+      currentPlayer: "player1",
+      isDraw: true
     };
     const expectedState = {
-      ...initialState,
+      ...createInitialState(),
       isGameStarted: true,
-      gameState: [[null, null, null], [null, null, null], [null, null, null]],
       player1: {
         name: "Nate",
         numberOfMoves: 0,
@@ -122,8 +122,8 @@ describe("reducers", () => {
         numberOfMoves: 0,
         valueOnBoard: 1
       },
-      isDraw: false,
-      currentPlayer: "player2"
+      currentPlayer: "player2",
+      isDraw: false
     };
 
     expect(reducers(gameInitialState, actions.startNewGame())).toEqual(
@@ -133,7 +133,7 @@ describe("reducers", () => {
 
   test("should update state when turn taken", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       player1: {
         name: "Nate",
         numberOfMoves: 0,
@@ -165,7 +165,7 @@ describe("reducers", () => {
 
   test("should set player one as winner", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       gameState: [[0, 0, null], [1, 1, null], [null, null, null]],
       player1: {
         name: "Nate",
@@ -204,7 +204,7 @@ describe("reducers", () => {
 
   test("should not take turn when game has been won", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       gameState: [[0, 0, 0], [1, 1, null], [null, null, null]],
       player1: {
         name: "Nate",
@@ -229,7 +229,7 @@ describe("reducers", () => {
 
   test("should not take turn when game been drawn", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
       player1: {
         name: "Nate",
@@ -254,7 +254,7 @@ describe("reducers", () => {
 
   test("should set player one as winner", () => {
     const gameInitialState = {
-      ...initialState,
+      ...createInitialState(),
       gameState: [[0, 0, null], [1, 1, 0], [1, 1, 0]],
       player1: {
         name: "Nate",
@@ -288,28 +288,15 @@ describe("reducers", () => {
     );
   });
 
-  test("should set isDraw to be true", () => {
+  test("should reset game to initial state", () => {
     const gameInitialState = {
-      ...initialState,
-      gameState: [[0, 0, 1], [1, 1, 0], [null, 1, 0]],
-      player1: {
-        name: "Nate",
-        numberOfMoves: 4,
-        valueOnBoard: 0
-      },
+      ...createInitialState(),
+      gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
       player2: {
         name: "bob",
         numberOfMoves: 4,
         valueOnBoard: 1
       },
-      isGameStarted: true,
-      currentPlayer: "player1",
-      isDraw: false
-    };
-
-    const expectedState = {
-      ...gameInitialState,
-      gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
       player1: {
         name: "Nate",
         numberOfMoves: 5,
@@ -319,8 +306,8 @@ describe("reducers", () => {
       winner: null
     };
 
-    expect(reducers(gameInitialState, actions.takeTurn(2, 0))).toEqual(
-      expectedState
+    expect(reducers(gameInitialState, actions.resetGame())).toEqual(
+      createInitialState()
     );
   });
 });
