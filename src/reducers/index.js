@@ -3,11 +3,13 @@ import actionTypes from "../actions/actionTypes";
 export const initialState = {
   player1: {
     name: "",
-    numberOfMoves: 0
+    numberOfMoves: 0,
+    valueOnBoard: 0
   },
   player2: {
     name: "",
-    numberOfMoves: 0
+    numberOfMoves: 0,
+    valueOnBoard: 1
   },
   gameState: [[null, null, null], [null, null, null], [null, null, null]],
   isGameStarted: false,
