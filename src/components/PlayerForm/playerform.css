@@ -1,0 +1,49 @@
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px
+}
+
+.input-group {
+  margin: 15px 15px;
+}
+
+.input-group label {
+    font-weight: 400;
+    font-size: 20px;
+    color: #2e3d48;
+    margin: 10px 10px;
+}
+
+.input-group input {
+    box-sizing: border-box;
+    padding: 5px;
+    outline: none;
+    font-weight: 100;
+    font-size: 15px;
+    color: #2e3d48;
+    width: 200px;
+}
+
+.button-row {
+  margin: 0 auto;
+}
+
+.start-game-button {
+  border: 1px solid #c0c0c0;
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  background-color: #00363d;
+  color: white;
+  display: flex;
+}
+
+.start-game-button:hover {
+  cursor: pointer;
+}
+
+.start-game-button > div {
+  margin: auto;
+}
