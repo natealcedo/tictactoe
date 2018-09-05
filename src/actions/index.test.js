@@ -14,9 +14,23 @@ describe("actions", () => {
     });
   });
 
+  test("resetGame action", () => {
+    expect(actions.resetGame()).toEqual({
+      type: actionTypes.RESET_GAME,
+      payload: null
+    });
+  });
+
   test("startGame action", () => {
     expect(actions.startGame()).toEqual({
       type: actionTypes.START_GAME,
+      payload: null
+    });
+  });
+
+  test("startNewGame action", () => {
+    expect(actions.startNewGame()).toEqual({
+      type: actionTypes.START_NEW_GAME,
       payload: null
     });
   });

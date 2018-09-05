@@ -10,6 +10,13 @@ export function onNameChange(player, name) {
   };
 }
 
+export function resetGame() {
+  return {
+    type: actionTypes.RESET_GAME,
+    payload: null
+  };
+}
+
 export function startGame() {
   return {
     type: actionTypes.START_GAME,
@@ -36,6 +43,7 @@ export function takeTurn(row, column) {
 
 export default {
   onNameChange,
+  resetGame,
   startGame,
   startNewGame,
   takeTurn
