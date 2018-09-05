@@ -1,11 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import rootReducer from "./reducers";
 import "./index.css";
 
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     <h1>Hello World</h1>
-  </div>,
+  </Provider>,
   document.getElementById("root")
 );
 
