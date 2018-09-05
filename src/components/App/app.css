@@ -1,0 +1,10 @@
+.app {
+  background-color: white;
+  min-height: calc(100vh - 5px);
+  width: 100%;
+  margin-top: 5px;
+}
+
+.header {
+  color: #00363d;
+}
