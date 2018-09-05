@@ -1,0 +1,23 @@
+.game-board-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px
+}
+
+.game-board { width: 600px;
+	height: 600px;
+	margin: 0 auto;
+  background-color: #34495e;
+  color: #fff;
+  border: 6px solid #2c3e50;
+  border-radius: 10px;
+	display: grid;
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+.state-tracker {
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+}
