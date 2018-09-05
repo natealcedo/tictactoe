@@ -10,5 +10,6 @@ exports[`App Should render without exploding 1`] = `
     Tic Tac Toe
   </h1>
   <Connect(Component) />
+  <Connect(Component) />
 </div>
 `;
