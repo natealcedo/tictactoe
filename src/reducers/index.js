@@ -19,7 +19,7 @@ export const initialState = {
   isDraw: false
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case actionTypes.START_GAME: {
       return {
@@ -51,11 +51,12 @@ export default function(state = initialState, action) {
     }
 
     case actionTypes.ON_NAME_CHANGE: {
+      const currentPlayerState = state[action.payload.player];
       return {
         ...state,
         [action.payload.player]: {
-          name: action.payload.name,
-          numberOfMoves: 0
+          ...currentPlayerState,
+          name: action.payload.name
         }
       };
     }

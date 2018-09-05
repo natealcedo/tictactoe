@@ -15,7 +15,8 @@ describe("reducers", () => {
       ...initialState,
       player1: {
         name: "Nate",
-        numberOfMoves: 0
+        numberOfMoves: 0,
+        valueOnBoard: 0
       }
     };
 
