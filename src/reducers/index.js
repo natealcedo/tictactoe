@@ -33,9 +33,19 @@ export default function(state = initialState, action) {
       const newPlayer =
         state.currentPlayer === "player1" ? "player2" : "player1";
       return {
-        ...state,
+        ...initialState,
+        gameState: [[null, null, null], [null, null, null], [null, null, null]],
+        isGameStarted: true,
         winner: null,
         isDraw: false,
+        player1: {
+          ...state.player1,
+          numberOfMoves: 0
+        },
+        player2: {
+          ...state.player2,
+          numberOfMoves: 0
+        },
         currentPlayer: newPlayer
       };
     }
@@ -67,7 +77,6 @@ export default function(state = initialState, action) {
       // Handle case where player is trying to select a box that already
       // has been chosen
       if (selectedSquare !== null) {
-        console.log("square selected");
         return state;
       }
 
@@ -95,6 +104,7 @@ export default function(state = initialState, action) {
       }
 
       // Can only be drawn when players have either made 4 or 5 moves
+      // Check if board is filled, if so, game is drawn
       if (
         newNumberOfMoves >= 4 &&
         utils.checkGameBoardFilled(updatedGameState)

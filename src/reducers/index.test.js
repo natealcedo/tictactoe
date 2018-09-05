@@ -52,6 +52,8 @@ describe("reducers", () => {
   test("should start new game when one player won", () => {
     const gameInitialState = {
       ...initialState,
+      isGameStarted: true,
+      gameState: [[0, 0, 0], [1, 1, null], [null, null, null]],
       winner: "player1",
       player1: {
         name: "Nate",
@@ -66,7 +68,19 @@ describe("reducers", () => {
       currentPlayer: "player1"
     };
     const expectedState = {
-      ...gameInitialState,
+      ...initialState,
+      gameState: [[null, null, null], [null, null, null], [null, null, null]],
+      isGameStarted: true,
+      player1: {
+        name: "Nate",
+        numberOfMoves: 0,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 0,
+        valueOnBoard: 1
+      },
       winner: null,
       currentPlayer: "player2"
     };
@@ -79,6 +93,7 @@ describe("reducers", () => {
   test("should start new game when drawn", () => {
     const gameInitialState = {
       ...initialState,
+      gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
       isDraw: true,
       player1: {
         name: "Nate",
@@ -93,7 +108,19 @@ describe("reducers", () => {
       currentPlayer: "player1"
     };
     const expectedState = {
-      ...gameInitialState,
+      ...initialState,
+      isGameStarted: true,
+      gameState: [[null, null, null], [null, null, null], [null, null, null]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 0,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 0,
+        valueOnBoard: 1
+      },
       isDraw: false,
       currentPlayer: "player2"
     };
