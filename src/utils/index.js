@@ -39,6 +39,13 @@ export function checkWinCondition(state, player) {
   return false;
 }
 
+export function updateGameState(state, row, column, value) {
+  const newState = [...state];
+  newState[row][column] = value;
+  return newState;
+}
+
 export default {
-  checkWinCondition
+  checkWinCondition,
+  updateGameState
 };
