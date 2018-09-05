@@ -48,4 +48,36 @@ describe("reducers", () => {
       expectedState
     );
   });
+
+  test("should update state when turn taken", () => {
+    const gameInitialState = {
+      ...initialState,
+      player1: {
+        name: "Nate",
+        numberOfMoves: 0,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 0,
+        valueOnBoard: 1
+      },
+      isGameStarted: true,
+      currentPlayer: "player1"
+    };
+    const expectedState = {
+      ...gameInitialState,
+      player1: {
+        name: "Nate",
+        numberOfMoves: 1,
+        valueOnBoard: 0
+      },
+      currentPlayer: "player2",
+      gameState: [[0, null, null], [null, null, null], [null, null, null]]
+    };
+
+    expect(reducers(gameInitialState, actions.takeTurn(0, 0))).toEqual(
+      expectedState
+    );
+  });
 });

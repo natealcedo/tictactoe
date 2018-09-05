@@ -1,4 +1,5 @@
 import actionTypes from "../actions/actionTypes";
+import utils from "../utils";
 
 export const initialState = {
   player1: {
@@ -27,6 +28,7 @@ export default function(state = initialState, action) {
         currentPlayer: "player1"
       };
     }
+
     case actionTypes.ON_NAME_CHANGE: {
       return {
         ...state,
@@ -37,6 +39,26 @@ export default function(state = initialState, action) {
       };
     }
 
+    case actionTypes.TAKE_TURN: {
+      const currentPlayer = state.currentPlayer;
+      const playerState = state[currentPlayer];
+      const { row, column } = action.payload;
+      const newPlayer = currentPlayer === "player1" ? "player2" : "player1";
+      return {
+        ...state,
+        [currentPlayer]: {
+          ...playerState,
+          numberOfMoves: ++playerState.numberOfMoves
+        },
+        gameState: utils.updateGameState(
+          state.gameState,
+          row,
+          column,
+          playerState.valueOnBoard
+        ),
+        currentPlayer: newPlayer
+      };
+    }
     default:
       return state;
   }
