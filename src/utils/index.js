@@ -55,7 +55,12 @@ export function updateGameState(state, row, column, value) {
   return newState;
 }
 
+export function checkGameBoardFilled(state) {
+  return state.every(row => row.every(element => element !== null));
+}
+
 export default {
+  checkGameBoardFilled,
   checkWinCondition,
   updateGameState
 };
