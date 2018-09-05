@@ -135,26 +135,164 @@ describe("reducers", () => {
     );
   });
 
-  test("should not update state when turn taken on a value that has been filled", () => {
+  test("should set player one as winner", () => {
     const gameInitialState = {
       ...initialState,
-      gameState: [[0, null, null], [null, null, null], [null, null, null]],
+      gameState: [[0, 0, null], [1, 1, null], [null, null, null]],
       player1: {
         name: "Nate",
-        numberOfMoves: 0,
+        numberOfMoves: 2,
         valueOnBoard: 0
       },
       player2: {
         name: "bob",
-        numberOfMoves: 0,
+        numberOfMoves: 2,
         valueOnBoard: 1
       },
       isGameStarted: true,
       currentPlayer: "player1"
     };
 
-    expect(reducers(gameInitialState, actions.takeTurn(0, 0))).toEqual(
+    const expectedState = {
+      ...gameInitialState,
+      gameState: [[0, 0, 0], [1, 1, null], [null, null, null]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 3,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 2,
+        valueOnBoard: 1
+      },
+      winner: "player1"
+    };
+
+    expect(reducers(gameInitialState, actions.takeTurn(0, 2))).toEqual(
+      expectedState
+    );
+  });
+
+  test("should not take turn when game has been won", () => {
+    const gameInitialState = {
+      ...initialState,
+      gameState: [[0, 0, 0], [1, 1, null], [null, null, null]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 3,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 2,
+        valueOnBoard: 1
+      },
+      winner: "player1",
+      isGameStarted: true,
+      currentPlayer: "player1",
+      draw: false
+    };
+
+    expect(reducers(gameInitialState, actions.takeTurn(2, 1))).toEqual(
       gameInitialState
+    );
+  });
+
+  test("should not take turn when game been drawn", () => {
+    const gameInitialState = {
+      ...initialState,
+      gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 5,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 5,
+        valueOnBoard: 1
+      },
+      winner: "player1",
+      isGameStarted: true,
+      currentPlayer: "player1",
+      draw: true
+    };
+
+    expect(reducers(gameInitialState, actions.takeTurn(2, 1))).toEqual(
+      gameInitialState
+    );
+  });
+
+  test("should set player one as winner", () => {
+    const gameInitialState = {
+      ...initialState,
+      gameState: [[0, 0, null], [1, 1, 0], [1, 1, 0]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 4,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 4,
+        valueOnBoard: 1
+      },
+      isGameStarted: true,
+      currentPlayer: "player1",
+      draw: false
+    };
+
+    const expectedState = {
+      ...gameInitialState,
+      gameState: [[0, 0, 0], [1, 1, 0], [1, 1, 0]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 5,
+        valueOnBoard: 0
+      },
+      currentPlayer: "player1",
+      winner: "player1"
+    };
+
+    expect(reducers(gameInitialState, actions.takeTurn(0, 2))).toEqual(
+      expectedState
+    );
+  });
+
+  test("should set isDraw to be true", () => {
+    const gameInitialState = {
+      ...initialState,
+      gameState: [[0, 0, 1], [1, 1, 0], [null, 1, 0]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 4,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 4,
+        valueOnBoard: 1
+      },
+      isGameStarted: true,
+      currentPlayer: "player1",
+      isDraw: false
+    };
+
+    const expectedState = {
+      ...gameInitialState,
+      gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
+      player1: {
+        name: "Nate",
+        numberOfMoves: 5,
+        valueOnBoard: 0
+      },
+      isDraw: true,
+      winner: null
+    };
+
+    expect(reducers(gameInitialState, actions.takeTurn(2, 0))).toEqual(
+      expectedState
     );
   });
 });

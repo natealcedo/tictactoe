@@ -53,28 +53,76 @@ export default function(state = initialState, action) {
     case actionTypes.TAKE_TURN: {
       const { row, column } = action.payload;
       const currentGameState = state.gameState;
-      if (currentGameState[row][column] !== null) {
+      const currentPlayer = state.currentPlayer;
+      const currentPlayerState = state[currentPlayer];
+      const newNumberOfMoves = currentPlayerState.numberOfMoves + 1;
+      const selectedSquare = currentGameState[row][column];
+      const playerValueOnBoard = currentPlayerState.valueOnBoard;
+
+      // Handle the case where there is a winner already or its a draw
+      if (state.winner !== null || state.isDraw) {
         return state;
       }
 
-      const currentPlayer = state.currentPlayer;
-      const playerState = state[currentPlayer];
-      const newPlayer = currentPlayer === "player1" ? "player2" : "player1";
+      // Handle case where player is trying to select a box that already
+      // has been chosen
+      if (selectedSquare !== null) {
+        console.log("square selected");
+        return state;
+      }
+
+      const updatedGameState = utils.updateGameState(
+        currentGameState,
+        row,
+        column,
+        currentPlayerState.valueOnBoard
+      );
+
+      // Handle the case where a player might have won.
+      if (
+        newNumberOfMoves >= 3 &&
+        utils.checkWinCondition(updatedGameState, playerValueOnBoard)
+      ) {
+        return {
+          ...state,
+          [currentPlayer]: {
+            ...currentPlayerState,
+            numberOfMoves: newNumberOfMoves
+          },
+          gameState: updatedGameState,
+          winner: currentPlayer
+        };
+      }
+
+      // Can only be drawn when players have either made 4 or 5 moves
+      if (
+        newNumberOfMoves >= 4 &&
+        utils.checkGameBoardFilled(updatedGameState)
+      ) {
+        return {
+          ...state,
+          [currentPlayer]: {
+            ...currentPlayerState,
+            numberOfMoves: newNumberOfMoves
+          },
+          gameState: updatedGameState,
+          isDraw: true
+        };
+      }
+
+      // No Winner and not yet filled, update state
+      const nextPlayer = currentPlayer === "player1" ? "player2" : "player1";
       return {
         ...state,
         [currentPlayer]: {
-          ...playerState,
-          numberOfMoves: ++playerState.numberOfMoves
+          ...currentPlayerState,
+          numberOfMoves: newNumberOfMoves
         },
-        gameState: utils.updateGameState(
-          state.gameState,
-          row,
-          column,
-          playerState.valueOnBoard
-        ),
-        currentPlayer: newPlayer
+        gameState: updatedGameState,
+        currentPlayer: nextPlayer
       };
     }
+
     default:
       return state;
   }
