@@ -23,4 +23,29 @@ describe("reducers", () => {
       reducers(initialState, actions.onNameChange("player1", "Nate"))
     ).toEqual(expectedState);
   });
+
+  test("should start game", () => {
+    const gameInitialState = {
+      ...initialState,
+      player1: {
+        name: "Nate",
+        numberOfMoves: 0,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 0,
+        valueOnBoard: 1
+      }
+    };
+    const expectedState = {
+      ...gameInitialState,
+      isGameStarted: true,
+      currentPlayer: "player1"
+    };
+
+    expect(reducers(gameInitialState, actions.startGame())).toEqual(
+      expectedState
+    );
+  });
 });

@@ -13,6 +13,7 @@ export const initialState = {
   },
   gameState: [[null, null, null], [null, null, null], [null, null, null]],
   isGameStarted: false,
+  currentPlayer: null,
   winner: null,
   isDraw: false
 };
@@ -22,7 +23,8 @@ export default function(state = initialState, action) {
     case actionTypes.START_GAME: {
       return {
         ...state,
-        isGameStarted: true
+        isGameStarted: true,
+        currentPlayer: "player1"
       };
     }
     case actionTypes.ON_NAME_CHANGE: {
