@@ -1,11 +1,26 @@
 import reducers, { initialState } from ".";
+import actions from "../actions";
 
 describe("reducers", () => {
-  it("should return initialState state for unknown action type", () => {
+  test("should return initialState state for unknown action type", () => {
     const action = {
       type: "FOO_BAR",
       payload: null
     };
     expect(reducers(initialState, action)).toEqual(initialState);
+  });
+
+  test("should update player1", () => {
+    const expectedState = {
+      ...initialState,
+      player1: {
+        name: "Nate",
+        numberOfMoves: 0
+      }
+    };
+
+    expect(
+      reducers(initialState, actions.onNameChange("player1", "Nate"))
+    ).toEqual(expectedState);
   });
 });
