@@ -49,9 +49,10 @@ describe("reducers", () => {
     );
   });
 
-  test("should new game with starting player the opposite of current player", () => {
+  test("should start new game when one player won", () => {
     const gameInitialState = {
       ...initialState,
+      winner: "player1",
       player1: {
         name: "Nate",
         numberOfMoves: 5,
@@ -66,6 +67,34 @@ describe("reducers", () => {
     };
     const expectedState = {
       ...gameInitialState,
+      winner: null,
+      currentPlayer: "player2"
+    };
+
+    expect(reducers(gameInitialState, actions.startNewGame())).toEqual(
+      expectedState
+    );
+  });
+
+  test("should start new game when drawn", () => {
+    const gameInitialState = {
+      ...initialState,
+      isDraw: true,
+      player1: {
+        name: "Nate",
+        numberOfMoves: 5,
+        valueOnBoard: 0
+      },
+      player2: {
+        name: "bob",
+        numberOfMoves: 4,
+        valueOnBoard: 1
+      },
+      currentPlayer: "player1"
+    };
+    const expectedState = {
+      ...gameInitialState,
+      isDraw: false,
       currentPlayer: "player2"
     };
 

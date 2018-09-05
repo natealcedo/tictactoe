@@ -34,6 +34,8 @@ export default function(state = initialState, action) {
         state.currentPlayer === "player1" ? "player2" : "player1";
       return {
         ...state,
+        winner: null,
+        isDraw: false,
         currentPlayer: newPlayer
       };
     }
