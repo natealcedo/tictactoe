@@ -10,6 +10,14 @@ export function onNameChange(player, name) {
   };
 }
 
+export function startGame() {
+  return {
+    type: actionTypes.START_GAME,
+    payload: null
+  };
+}
+
 export default {
-  onNameChange
+  onNameChange,
+  startGame
 };

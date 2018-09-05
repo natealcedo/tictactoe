@@ -10,12 +10,19 @@ export const initialState = {
     numberOfMoves: 0
   },
   gameState: [[null, null, null], [null, null, null], [null, null, null]],
+  isGameStarted: false,
   winner: null,
   isDraw: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case actionTypes.START_GAME: {
+      return {
+        ...state,
+        isGameStarted: true
+      };
+    }
     case actionTypes.ON_NAME_CHANGE: {
       return {
         ...state,

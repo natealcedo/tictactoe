@@ -13,4 +13,11 @@ describe("actions", () => {
       }
     });
   });
+
+  test("startGame action", () => {
+    expect(actions.startGame()).toEqual({
+      type: actionTypes.START_GAME,
+      payload: null
+    });
+  });
 });
