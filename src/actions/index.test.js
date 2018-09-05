@@ -20,4 +20,14 @@ describe("actions", () => {
       payload: null
     });
   });
+
+  test("takeTurn action", () => {
+    expect(actions.takeTurn(0, 0)).toEqual({
+      type: actionTypes.TAKE_TURN,
+      payload: {
+        row: 0,
+        column: 0
+      }
+    });
+  });
 });

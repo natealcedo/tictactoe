@@ -17,7 +17,18 @@ export function startGame() {
   };
 }
 
+export function takeTurn(row, column) {
+  return {
+    type: actionTypes.TAKE_TURN,
+    payload: {
+      row,
+      column
+    }
+  };
+}
+
 export default {
   onNameChange,
-  startGame
+  startGame,
+  takeTurn
 };
