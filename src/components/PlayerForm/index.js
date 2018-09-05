@@ -10,8 +10,23 @@ export const PlayerForm = ({
   playerOneName,
   playerTwoName,
   isGameStarted
-}) =>
-  isGameStarted ? null : (
+}) => {
+  const startGame = () => {
+    if (playerOneName.trim() === "" || playerTwoName.trim() === "") {
+      // just a quick hack
+      alert("Player names are not filled");
+      return;
+    }
+    onGameStart();
+  };
+
+  const onKeyPress = e => {
+    if (e.key === "Enter") {
+      startGame();
+    }
+  };
+
+  return isGameStarted ? null : (
     <div className="form-container">
       <div className="input-group">
         <label>Player one name:</label>
@@ -19,33 +34,28 @@ export const PlayerForm = ({
           name="player-one"
           onChange={e => onChange("player1", e.target.value)}
           value={playerOneName}
+          onKeyPress={onKeyPress}
         />
       </div>
       <div className="input-group">
         <label>Player two name:</label>
         <input
           name="player-two"
-          onChange={e => onChange("player2", e.target.value)}
+          onChange={e => {
+            onChange("player2", e.target.value);
+          }}
           value={playerTwoName}
+          onKeyPress={onKeyPress}
         />
       </div>
       <div className="button-row">
-        <div
-          className="start-game-button"
-          onClick={() => {
-            if (playerOneName.trim() === "" || playerTwoName.trim() === "") {
-              // just a quick hack
-              alert("Player names are not filled");
-              return;
-            }
-            onGameStart();
-          }}
-        >
+        <div className="start-game-button" onClick={() => startGame()}>
           <div>START GAME</div>
         </div>
       </div>
     </div>
   );
+};
 
 PlayerForm.propTypes = {
   isGameStarted: propTypes.bool.isRequired,

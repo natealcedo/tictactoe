@@ -47,6 +47,30 @@ describe("PlayerForm", () => {
     expect(onGameStart).toHaveBeenCalled();
   });
 
+  test("should call onGameStart when enter is pressed on either key inputs", () => {
+    const onGameStart = jest.fn();
+    const wrapper = shallow(
+      <PlayerForm
+        onChange={noOp}
+        onGameStart={onGameStart}
+        playerOneName="Nate"
+        playerTwoName="James"
+        isGameStarted={false}
+      />
+    );
+
+    const event = {
+      key: "Enter",
+      keyCode: 13,
+      which: 13
+    };
+
+    wrapper.find('input[name="player-one"]').simulate("keyPress", event);
+    wrapper.find('input[name="player-two"]').simulate("keyPress", event);
+
+    expect(onGameStart).toHaveBeenCalledTimes(2);
+  });
+
   test("should not render when game is started", () => {
     const wrapper = shallow(
       <PlayerForm

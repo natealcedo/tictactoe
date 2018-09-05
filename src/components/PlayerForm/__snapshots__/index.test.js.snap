@@ -13,6 +13,7 @@ exports[`PlayerForm should render without exploding 1`] = `
     <input
       name="player-one"
       onChange={[Function]}
+      onKeyPress={[Function]}
       value=""
     />
   </div>
@@ -25,6 +26,7 @@ exports[`PlayerForm should render without exploding 1`] = `
     <input
       name="player-two"
       onChange={[Function]}
+      onKeyPress={[Function]}
       value=""
     />
   </div>
@@ -56,6 +58,7 @@ exports[`PlayerForm should render without exploding 2`] = `
     <input
       name="player-one"
       onChange={[Function]}
+      onKeyPress={[Function]}
       value=""
     />
   </div>
@@ -68,6 +71,7 @@ exports[`PlayerForm should render without exploding 2`] = `
     <input
       name="player-two"
       onChange={[Function]}
+      onKeyPress={[Function]}
       value=""
     />
   </div>
