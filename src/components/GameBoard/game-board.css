@@ -5,7 +5,10 @@
   padding: 10px
 }
 
-.game-board { width: 600px;
+.game-board { 
+  max-width: 600px;
+	max-height: 600px;
+  width: 600px;
 	height: 600px;
 	margin: 0 auto;
   background-color: #34495e;
@@ -14,6 +17,13 @@
   border-radius: 10px;
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+@media only screen and (max-width: 600px){
+  .game-board { 
+    height: 300px;
+    width: 300px;
+  }
 }
 
 .state-tracker {
