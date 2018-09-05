@@ -61,12 +61,14 @@ describe("utils", () => {
     test("game should be updated", () => {
       const previousGameState = [
         [null, null, null],
-        [null, null, null][(null, null, null)]
+        [null, null, null],
+        [null, null, null]
       ];
 
       const expectedGameState = [
         [0, null, null],
-        [null, null, null][(null, null, null)]
+        [null, null, null],
+        [null, null, null]
       ];
 
       expect(utils.updateGameState(previousGameState, 0, 0, 0)).toEqual(
