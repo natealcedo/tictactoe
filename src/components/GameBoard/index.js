@@ -8,21 +8,40 @@ import "./game-board.css";
 export const GameBoard = ({
   currentPlayer,
   gameState,
+  isDraw,
   isGameStarted,
+  resetGame,
+  startNewGame,
   takeTurn,
   winner
 }) => {
+  const displayGameState = (winner, isDraw) => {
+    if (isDraw) {
+      return "Game Drawn";
+    }
+    if (winner) {
+      return `${currentPlayer.name.toUpperCase()} won!`;
+    }
+    return `${currentPlayer.name.toUpperCase()}'s turn`;
+  };
+
   if (!isGameStarted) {
     return null;
   }
   return (
     <div className="game-board-container">
       <div className="state-tracker">
-        <h2>
-          {winner
-            ? `${currentPlayer.name.toUpperCase()} won!`
-            : `${currentPlayer.name.toUpperCase()}'s turn`}
-        </h2>
+        <h2>{displayGameState(winner, isDraw)}</h2>
+        {winner ? (
+          <React.Fragment>
+            <div className="button" onClick={() => startNewGame()}>
+              <div>Play Again</div>
+            </div>
+            <div className="button" onClick={() => resetGame()}>
+              <div>Reset Game</div>
+            </div>
+          </React.Fragment>
+        ) : null}
       </div>
       <div className="game-board">
         {gameState.map((row, rowNumber) => {
@@ -51,19 +70,23 @@ GameBoard.propTypes = {
   }),
   gameState: propTypes.arrayOf(propTypes.arrayOf(propTypes.oneOf([0, 1])))
     .isRequired,
+  isDraw: propTypes.bool.isRequired,
   isGameStarted: propTypes.bool.isRequired,
   winner: propTypes.oneOf(["player1", "player2"])
 };
 
 const mapStateToProps = state => ({
-  gameState: state.gameState,
-  isGameStarted: state.isGameStarted,
   currentPlayer: state[state.currentPlayer],
+  gameState: state.gameState,
+  isDraw: state.isDraw,
+  isGameStarted: state.isGameStarted,
   winner: state.winner
 });
 
 const mapDispatchToProps = {
-  takeTurn: actions.takeTurn
+  takeTurn: actions.takeTurn,
+  startNewGame: actions.startNewGame,
+  resetGame: actions.resetGame
 };
 
 export default connect(

@@ -80,3 +80,183 @@ exports[`GameBoard should render without exploding 1`] = `
   </div>
 </div>
 `;
+
+exports[`GameBoard should show "Nate won" 1`] = `
+<div
+  className="game-board-container"
+>
+  <div
+    className="state-tracker"
+  >
+    <h2>
+      NATE won!
+    </h2>
+    <React.Fragment>
+      <div
+        className="button"
+        onClick={[Function]}
+      >
+        <div>
+          Play Again
+        </div>
+      </div>
+      <div
+        className="button"
+        onClick={[Function]}
+      >
+        <div>
+          Reset Game
+        </div>
+      </div>
+    </React.Fragment>
+  </div>
+  <div
+    className="game-board"
+  >
+    <Square
+      column={0}
+      key="0-0"
+      onClick={[Function]}
+      row={0}
+      value={1}
+    />
+    <Square
+      column={1}
+      key="0-1"
+      onClick={[Function]}
+      row={0}
+      value={0}
+    />
+    <Square
+      column={2}
+      key="0-2"
+      onClick={[Function]}
+      row={0}
+      value={0}
+    />
+    <Square
+      column={0}
+      key="1-0"
+      onClick={[Function]}
+      row={1}
+      value={1}
+    />
+    <Square
+      column={1}
+      key="1-1"
+      onClick={[Function]}
+      row={1}
+      value={1}
+    />
+    <Square
+      column={2}
+      key="1-2"
+      onClick={[Function]}
+      row={1}
+      value={1}
+    />
+    <Square
+      column={0}
+      key="2-0"
+      onClick={[Function]}
+      row={2}
+      value={0}
+    />
+    <Square
+      column={1}
+      key="2-1"
+      onClick={[Function]}
+      row={2}
+      value={1}
+    />
+    <Square
+      column={2}
+      key="2-2"
+      onClick={[Function]}
+      row={2}
+      value={0}
+    />
+  </div>
+</div>
+`;
+
+exports[`GameBoard should show drawn 1`] = `
+<div
+  className="game-board-container"
+>
+  <div
+    className="state-tracker"
+  >
+    <h2>
+      Game Drawn
+    </h2>
+  </div>
+  <div
+    className="game-board"
+  >
+    <Square
+      column={0}
+      key="0-0"
+      onClick={[Function]}
+      row={0}
+      value={1}
+    />
+    <Square
+      column={1}
+      key="0-1"
+      onClick={[Function]}
+      row={0}
+      value={0}
+    />
+    <Square
+      column={2}
+      key="0-2"
+      onClick={[Function]}
+      row={0}
+      value={0}
+    />
+    <Square
+      column={0}
+      key="1-0"
+      onClick={[Function]}
+      row={1}
+      value={0}
+    />
+    <Square
+      column={1}
+      key="1-1"
+      onClick={[Function]}
+      row={1}
+      value={1}
+    />
+    <Square
+      column={2}
+      key="1-2"
+      onClick={[Function]}
+      row={1}
+      value={1}
+    />
+    <Square
+      column={0}
+      key="2-0"
+      onClick={[Function]}
+      row={2}
+      value={1}
+    />
+    <Square
+      column={1}
+      key="2-1"
+      onClick={[Function]}
+      row={2}
+      value={1}
+    />
+    <Square
+      column={2}
+      key="2-2"
+      onClick={[Function]}
+      row={2}
+      value={0}
+    />
+  </div>
+</div>
+`;
