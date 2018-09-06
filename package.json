@@ -13,17 +13,19 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "cypress:open": "cypress open",
+    "start": "react-scripts start",
+    "test:e2e": "cypress run",
     "test:watch": "react-scripts test --env=jsdom --watch",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "test": "react-scripts test --env=jsdom --coverage"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
     "babel-eslint": "^7.2.3",
     "coveralls": "^3.0.2",
-    "cypress": "^3.0.3",
+    "cypress": "^3.1.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
