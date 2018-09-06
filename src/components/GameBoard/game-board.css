@@ -6,10 +6,10 @@
 }
 
 .game-board { 
-  max-width: 600px;
-	max-height: 600px;
-  width: 600px;
-	height: 600px;
+  max-width: 400px;
+	max-height: 400px;
+  width: 400px;
+	height: 400px;
 	margin: 0 auto;
   background-color: #34495e;
   color: #fff;
