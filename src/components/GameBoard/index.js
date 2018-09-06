@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import actions from "../../actions";
 import Square from "./Square";
+import Button from "../Button";
 import propTypes from "prop-types";
 import "./game-board.css";
 
@@ -34,12 +35,8 @@ export const GameBoard = ({
         <h2>{displayGameState(winner, isDraw)}</h2>
         {winner ? (
           <React.Fragment>
-            <div className="button" onClick={() => startNewGame()}>
-              <div>Play Again</div>
-            </div>
-            <div className="button" onClick={() => resetGame()}>
-              <div>Reset Game</div>
-            </div>
+            <Button label="Play Again" onClick={() => startNewGame()} />
+            <Button label="Reset Game" onClick={() => resetGame()} />
           </React.Fragment>
         ) : null}
       </div>
@@ -72,7 +69,9 @@ GameBoard.propTypes = {
     .isRequired,
   isDraw: propTypes.bool.isRequired,
   isGameStarted: propTypes.bool.isRequired,
-  winner: propTypes.oneOf(["player1", "player2"])
+  winner: propTypes.oneOf(["player1", "player2"]),
+  startNewGame: propTypes.func.isRequired,
+  resetGame: propTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
