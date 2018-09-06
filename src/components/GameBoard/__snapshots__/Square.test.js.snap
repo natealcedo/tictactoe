@@ -19,6 +19,7 @@ exports[`Square should render without exploding for value 1 1`] = `
 exports[`Square should render without exploding for value null 1`] = `
 <div
   className="square"
+  name="row-0-column-0"
   onClick={[Function]}
 />
 `;

@@ -4,7 +4,13 @@ import "./square.css";
 
 const Square = ({ value, onClick, row, column }) => {
   if (value === null) {
-    return <div className="square" onClick={() => onClick(row, column)} />;
+    return (
+      <div
+        className="square"
+        onClick={() => onClick(row, column)}
+        name={`row-${row}-column-${column}`}
+      />
+    );
   }
 
   if (value === 0) {
