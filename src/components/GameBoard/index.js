@@ -33,7 +33,7 @@ export const GameBoard = ({
     <div className="game-board-container">
       <div className="state-tracker">
         <h2>{displayGameState(winner, isDraw)}</h2>
-        {winner ? (
+        {winner || isDraw ? (
           <React.Fragment>
             <Button label="Play Again" onClick={() => startNewGame()} />
             <Button label="Reset Game" onClick={() => resetGame()} />

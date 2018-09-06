@@ -273,6 +273,16 @@ exports[`GameBoard should show drawn 1`] = `
     <h2>
       Game Drawn
     </h2>
+    <React.Fragment>
+      <Button
+        label="Play Again"
+        onClick={[Function]}
+      />
+      <Button
+        label="Reset Game"
+        onClick={[Function]}
+      />
+    </React.Fragment>
   </div>
   <div
     className="game-board"
