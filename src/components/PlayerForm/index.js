@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { connect } from "react-redux";
 import actions from "../../actions";
+import Button from "../Button";
 import "./playerform.css";
 
 export const PlayerForm = ({
@@ -49,9 +50,7 @@ export const PlayerForm = ({
         />
       </div>
       <div className="button-row">
-        <div className="start-game-button" onClick={() => startGame()}>
-          <div>START GAME</div>
-        </div>
+        <Button label="Start Game" onClick={() => startGame()} />
       </div>
     </div>
   );

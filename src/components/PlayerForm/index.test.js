@@ -1,17 +1,18 @@
 import React from "react";
 import { PlayerForm } from ".";
 import { shallow } from "enzyme";
+import Button from "../Button";
 
 describe("PlayerForm", () => {
   const noOp = () => {};
   test("should render without exploding", () => {
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={false}
         onChange={noOp}
         onGameStart={noOp}
         playerOneName=""
         playerTwoName=""
-        isGameStarted={false}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -21,14 +22,14 @@ describe("PlayerForm", () => {
     const onGameStart = jest.fn();
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={false}
         onChange={noOp}
         onGameStart={onGameStart}
         playerOneName=""
         playerTwoName=""
-        isGameStarted={false}
       />
     );
-    wrapper.find(".start-game-button").simulate("click");
+    wrapper.find(Button).simulate("click");
     expect(onGameStart).not.toHaveBeenCalled();
   });
 
@@ -36,14 +37,14 @@ describe("PlayerForm", () => {
     const onGameStart = jest.fn();
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={false}
         onChange={noOp}
         onGameStart={onGameStart}
         playerOneName="Nate"
         playerTwoName="James"
-        isGameStarted={false}
       />
     );
-    wrapper.find(".start-game-button").simulate("click");
+    wrapper.find(Button).simulate("click");
     expect(onGameStart).toHaveBeenCalled();
   });
 
@@ -51,11 +52,11 @@ describe("PlayerForm", () => {
     const onGameStart = jest.fn();
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={false}
         onChange={noOp}
         onGameStart={onGameStart}
         playerOneName="Nate"
         playerTwoName="James"
-        isGameStarted={false}
       />
     );
 
@@ -74,11 +75,11 @@ describe("PlayerForm", () => {
   test("should not render when game is started", () => {
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={true}
         onChange={noOp}
         onGameStart={noOp}
         playerOneName=""
         playerTwoName=""
-        isGameStarted={true}
       />
     );
     expect(wrapper).toBeEmptyRender();
@@ -87,11 +88,11 @@ describe("PlayerForm", () => {
   test("should render without exploding", () => {
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={false}
         onChange={noOp}
         onGameStart={noOp}
         playerOneName=""
         playerTwoName=""
-        isGameStarted={false}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -101,11 +102,11 @@ describe("PlayerForm", () => {
     const onChange = jest.fn();
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={false}
         onChange={onChange}
         onGameStart={noOp}
         playerOneName=""
         playerTwoName=""
-        isGameStarted={false}
       />
     );
     const event = {
@@ -121,11 +122,11 @@ describe("PlayerForm", () => {
     const onChange = jest.fn();
     const wrapper = shallow(
       <PlayerForm
+        isGameStarted={false}
         onChange={onChange}
         onGameStart={noOp}
         playerOneName=""
         playerTwoName=""
-        isGameStarted={false}
       />
     );
     const event = {

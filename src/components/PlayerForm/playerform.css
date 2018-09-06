@@ -29,21 +29,3 @@
 .button-row {
   margin: 0 auto;
 }
-
-.start-game-button {
-  border: 1px solid #c0c0c0;
-  height: 50px;
-  width: 200px;
-  border-radius: 5px;
-  background-color: #00363d;
-  color: white;
-  display: flex;
-}
-
-.start-game-button:hover {
-  cursor: pointer;
-}
-
-.start-game-button > div {
-  margin: auto;
-}
