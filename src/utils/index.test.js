@@ -79,7 +79,7 @@ describe("utils", () => {
 
   describe("checkGameBoardFilled", () => {
     test("board should be filled", () => {
-      const gameState = [[[0, 0, 1], [1, 0, 0], [1, 1, 0]]];
+      const gameState = [[0, 0, 1], [1, 0, 0], [1, 1, 0]];
       expect(utils.checkGameBoardFilled(gameState)).toBeTrue();
     });
 
