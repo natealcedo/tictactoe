@@ -8,8 +8,8 @@ cache:
 script:
   - npm test
   - npm run build
-  # - npm start & 
-  # - npm run cypress:run -- --record --key $CYPRESS_KEY
+  - npm start & 
+  - npm run test:e2e 
 
 after_script:
   - npm run coveralls
