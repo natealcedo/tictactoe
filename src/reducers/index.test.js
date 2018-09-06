@@ -95,7 +95,7 @@ describe("reducers", () => {
   test("should start new game when drawn", () => {
     const gameInitialState = {
       ...createInitialState(),
-      gameState: [[0, 0, 1], [1, 1, 0], [0, 1, 0]],
+      gameState: [[0, 0, 1], [1, 1, 0], [0, 0, 1]],
       player1: {
         name: "Nate",
         numberOfMoves: 5,
