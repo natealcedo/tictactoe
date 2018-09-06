@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Should render without exploding 1`] = `
+<div
+  className="button"
+  onClick={[Function]}
+>
+  <div>
+    Button
+  </div>
+</div>
+`;
