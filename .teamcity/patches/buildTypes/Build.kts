@@ -23,5 +23,14 @@ changeBuildType(RelativeId("Build")) {
                 dockerPull = true
             }
         }
+        insert(1) {
+            script {
+                name = "Test"
+                scriptContent = "npm test"
+                dockerImage = "node:dubnium"
+                dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux
+                dockerPull = true
+            }
+        }
     }
 }
